@@ -1,0 +1,35 @@
+.apt-quick-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 16px; }
+@media (max-width: 900px) { .apt-quick-stats { grid-template-columns: repeat(3, 1fr); } }
+
+.qs-card {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: var(--shadow);
+  transition: all .2s;
+}
+.qs-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.qs-count { font-size: 24px; font-weight: 700; color: var(--gray-800); line-height: 1; }
+.qs-label { font-size: 11px; color: var(--gray-400); font-weight: 600; }
+
+.qs-confirmed  { border-color: var(--teal);   } .qs-confirmed .qs-count  { color: var(--teal); }
+.qs-completed  { border-color: var(--green);  } .qs-completed .qs-count  { color: var(--green); }
+.qs-pending    { border-color: var(--orange); } .qs-pending .qs-count    { color: var(--orange); }
+.qs-cancelled  { border-color: var(--red);    } .qs-cancelled .qs-count  { color: var(--red); }
+.qs-noshow     { border-color: var(--gray-400); } .qs-noshow .qs-count   { color: var(--gray-500); }
+
+/* Detail */
+.apt-detail-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-200); }
+.apt-detail-header h3 { font-size: 18px; font-weight: 700; }
+.apt-status-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.status-confirmed { background: var(--teal-light); color: var(--teal); }
+.status-completed { background: var(--green-light); color: var(--green); }
+.status-cancelled { background: var(--red-light); color: var(--red); }
+.status-pending   { background: var(--orange-light); color: var(--orange); }
+

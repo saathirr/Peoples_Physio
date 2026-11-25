@@ -1,0 +1,74 @@
+/* Sales Summary Cards */
+.sales-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media (max-width: 900px) { .sales-summary { grid-template-columns: repeat(2, 1fr); } }
+
+.summary-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--teal);
+  text-align: center;
+}
+.summary-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--gray-400); margin-bottom: 6px; }
+.summary-value { font-size: 18px; font-weight: 800; color: var(--teal-dark); }
+
+/* Amount badge */
+.amount-badge {
+  background: var(--green-light);
+  color: #065F46;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Total row */
+.total-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+.total-row strong { color: var(--teal-dark); font-size: 15px; }
+
+/* Client dropdown */
+.client-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  z-index: 999;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.client-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background .15s;
+  border-bottom: 1px solid var(--gray-100);
+}
+.client-dropdown-item:last-child { border-bottom: none; }
+.client-dropdown-item:hover { background: var(--teal-light); }
+.cdi-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  color: white; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+.cdi-name { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+.cdi-meta { font-size: 11px; color: var(--gray-400); }
+
