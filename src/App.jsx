@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import { AppProvider } from './context/AppContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout/Layout';
@@ -44,11 +45,13 @@ const MainApp = () => {
 };
 
 const App = () => (
-  <AuthProvider>
-    <AppProvider>
-      <MainApp />
-    </AppProvider>
-  </AuthProvider>
+  <ThemeProvider>
+    <AuthProvider>
+      <AppProvider>
+        <MainApp />
+      </AppProvider>
+    </AuthProvider>
+  </ThemeProvider>
 );
 
 export default App;

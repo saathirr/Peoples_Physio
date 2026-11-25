@@ -1,13 +1,18 @@
 import React from 'react';
 import { useApp } from '../../context/AppContext';
+import { useTheme } from '../../context/ThemeContext';
 import { formatCurrency } from '../../utils/format';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import { Activity } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const COLORS = ['#1A6B72', '#10B981', '#F59E0B', '#EF4444', '#6B7280'];
 
 const Reports = () => {
-  const { appointments, clients } = useApp();
+  const { appointments } = useApp();
+  const { theme } = useTheme();
+
+  const isDark = theme === 'dark';
+  const gridColor = isDark ? '#334155' : '#E2E8F0';
+  const textColor = isDark ? '#94A3B8' : '#64748B';
 
   // Appointments by type
   const byType = {};
@@ -43,40 +48,62 @@ const Reports = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
         {/* Revenue Bar Chart */}
         <div className="card">
-          <h3 style={{ marginBottom: 16, color: 'var(--teal-dark)' }}>Monthly Revenue (LKR)</h3>
+          <h3 style={{ marginBottom: 16, color: 'var(--teal)' }}>Monthly Revenue (LKR)</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={revData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-              <XAxis dataKey="month" tick={{ fontSize: 11 }} />
-              <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `LKR ${(v/1000).toFixed(0)}K`} />
-              <Tooltip formatter={v => formatCurrency(v)} />
-              <Bar dataKey="revenue" fill="#1A6B72" radius={[4,4,0,0]} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis dataKey="month" stroke={textColor} tick={{ fontSize: 11, fill: textColor }} />
+              <YAxis stroke={textColor} tick={{ fontSize: 11, fill: textColor }} tickFormatter={v => `LKR ${(v/1000).toFixed(0)}K`} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: isDark ? '#1E293B' : '#FFFFFF',
+                  borderColor: isDark ? '#334155' : '#E2E8F0',
+                  color: isDark ? '#F8FAFC' : '#0F172A',
+                  borderRadius: 8,
+                }}
+                formatter={v => formatCurrency(v)}
+              />
+              <Bar dataKey="revenue" fill={isDark ? '#2DD4BF' : '#1A6B72'} radius={[4,4,0,0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
         {/* Status Pie */}
         <div className="card">
-          <h3 style={{ marginBottom: 16, color: 'var(--teal-dark)' }}>Appointment Status Distribution</h3>
+          <h3 style={{ marginBottom: 16, color: 'var(--teal)' }}>Appointment Status Distribution</h3>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie data={statusPie} cx="50%" cy="50%" outerRadius={80} dataKey="value" label={({ name, percent }) => `${name} ${(percent*100).toFixed(0)}%`}>
                 {statusPie.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
               </Pie>
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: isDark ? '#1E293B' : '#FFFFFF',
+                  borderColor: isDark ? '#334155' : '#E2E8F0',
+                  color: isDark ? '#F8FAFC' : '#0F172A',
+                  borderRadius: 8,
+                }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
         {/* Session Types */}
         <div className="card">
-          <h3 style={{ marginBottom: 16, color: 'var(--teal-dark)' }}>Sessions by Type</h3>
+          <h3 style={{ marginBottom: 16, color: 'var(--teal)' }}>Sessions by Type</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={typeData} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-              <XAxis type="number" tick={{ fontSize: 11 }} />
-              <YAxis type="category" dataKey="name" tick={{ fontSize: 10 }} width={110} />
-              <Tooltip />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis type="number" stroke={textColor} tick={{ fontSize: 11, fill: textColor }} />
+              <YAxis type="category" dataKey="name" stroke={textColor} tick={{ fontSize: 10, fill: textColor }} width={110} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: isDark ? '#1E293B' : '#FFFFFF',
+                  borderColor: isDark ? '#334155' : '#E2E8F0',
+                  color: isDark ? '#F8FAFC' : '#0F172A',
+                  borderRadius: 8,
+                }}
+              />
               <Bar dataKey="value" fill="#C9A227" radius={[0,4,4,0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -84,7 +111,7 @@ const Reports = () => {
 
         {/* Therapist Table */}
         <div className="card">
-          <h3 style={{ marginBottom: 16, color: 'var(--teal-dark)' }}>Appointments by Therapist</h3>
+          <h3 style={{ marginBottom: 16, color: 'var(--teal)' }}>Appointments by Therapist</h3>
           <table>
             <thead><tr><th>Therapist</th><th>Total</th><th>Completed</th><th>Revenue (LKR)</th></tr></thead>
             <tbody>
@@ -96,7 +123,7 @@ const Reports = () => {
                     <td>{t}</td>
                     <td>{tApts.length}</td>
                     <td>{tApts.filter(a => a.status === 'Completed').length}</td>
-                    <td style={{ color: 'var(--teal)', fontWeight: 600 }}>{formatCurrency(rev)}</td>
+                    <td style={{ color: isDark ? '#2DD4BF' : 'var(--teal)', fontWeight: 600 }}>{formatCurrency(rev)}</td>
                   </tr>
                 );
               })}
@@ -109,4 +136,3 @@ const Reports = () => {
 };
 
 export default Reports;
-

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, LogOut, Clock, Calendar, Bell } from 'lucide-react';
+import { Menu, LogOut, Clock, Calendar, Bell, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const Header = ({ onToggle }) => {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -53,6 +55,20 @@ const Header = ({ onToggle }) => {
       </div>
 
       <div className="header-right">
+        {/* Dark Mode / Light Mode Toggle Button */}
+        <button
+          className={`btn-icon theme-toggle-btn ${theme === 'dark' ? 'is-dark' : 'is-light'}`}
+          onClick={toggleTheme}
+          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          aria-label="Toggle Theme"
+        >
+          {theme === 'dark' ? (
+            <Sun size={19} className="theme-icon sun-icon" />
+          ) : (
+            <Moon size={19} className="theme-icon moon-icon" />
+          )}
+        </button>
+
         <button className="btn-icon header-btn notification-btn" title="Notifications">
           <Bell size={18} />
           <span className="notif-dot" />

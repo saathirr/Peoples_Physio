@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+[data-theme="dark"] .login-bg {
+  background: linear-gradient(135deg, #091F22 0%, #0F2D32 50%, #081619 100%);
+}
+
 /* Decorative background blobs */
 .login-blob {
   position: absolute;
@@ -39,6 +43,12 @@
   z-index: 1;
 }
 
+[data-theme="dark"] .login-card {
+  background: #1E293B;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+
 /* Logo */
 .login-logo-wrap {
   display: flex;
@@ -50,9 +60,14 @@
   height: 90px;
   border-radius: 16px;
   object-fit: contain;
-  background: var(--teal-light);
+  background: #FFFFFF;
   padding: 4px;
-  box-shadow: 0 4px 16px rgba(26,107,114,.2);
+  box-shadow: 0 4px 16px rgba(26,107,114,.25);
+  border: 1.5px solid rgba(201, 162, 39, 0.5);
+}
+
+[data-theme="dark"] .login-logo {
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.35);
 }
 
 /* Brand */
@@ -66,6 +81,9 @@
   color: var(--teal-dark);
   letter-spacing: -.3px;
 }
+[data-theme="dark"] .login-brand h1 {
+  color: #38BDF8;
+}
 .login-brand p {
   font-size: 13px;
   color: var(--gray-400);
@@ -75,8 +93,8 @@
 /* Error */
 .login-error {
   background: var(--red-light);
-  color: #991B1B;
-  border: 1px solid #FCA5A5;
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 13px;
@@ -94,6 +112,7 @@
 .login-eye {
   position: absolute; right: 10px;
   background: none; border: none; cursor: pointer; font-size: 14px; padding: 4px;
+  color: var(--text-muted);
 }
 
 /* Button */
@@ -122,18 +141,25 @@
   text-align: center;
   margin-top: 20px;
   font-size: 12px;
-  color: var(--gray-400);
+  color: var(--text-muted);
   background: var(--gray-50);
   border-radius: 8px;
   padding: 8px 12px;
 }
+[data-theme="dark"] .login-hint {
+  background: #0F172A;
+  border: 1px solid #334155;
+}
 .login-hint code {
   background: var(--teal-light);
-  color: var(--teal-dark);
+  color: var(--teal);
   padding: 1px 6px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 700;
+}
+[data-theme="dark"] .login-hint code {
+  color: #38BDF8;
 }
 
 /* Footer */
@@ -141,11 +167,10 @@
   text-align: center;
   margin-top: 20px;
   font-size: 11px;
-  color: var(--gray-300);
+  color: var(--gray-400);
 }
 
 @media (max-width: 480px) {
   .login-card { padding: 28px 20px 22px; }
   .login-brand h1 { font-size: 19px; }
 }
-

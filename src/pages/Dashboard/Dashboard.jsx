@@ -10,11 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const REVENUE_FILTERS = [
-  { key: 'today',  label: 'Today'      },
-  { key: 'week',   label: 'This Week'  },
-  { key: 'month',  label: 'This Month' },
-  { key: 'all',    label: 'All Time'   },
-  { key: 'custom', label: 'Pick Date'  },
+  { key: 'today', label: 'Today' },
+  { key: 'week', label: 'This Week' },
+  { key: 'month', label: 'This Month' },
+  { key: 'all', label: 'All Time' },
+  { key: 'custom', label: 'Pick Date' },
 ];
 
 const StatCard = ({ label, value, icon: Icon, color, sub, onClick }) => (
@@ -33,8 +33,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const [revenueFilter, setRevenueFilter] = useState('all');
-  const [customStart, setCustomStart]     = useState('');
-  const [customEnd, setCustomEnd]         = useState('');
+  const [customStart, setCustomStart] = useState('');
+  const [customEnd, setCustomEnd] = useState('');
 
   const filteredRevenue = getRevenue(revenueFilter, customStart, customEnd);
 
@@ -237,7 +237,7 @@ const Dashboard = () => {
               <div className="recent-sales-list">
                 {recentSales.map(s => (
                   <div key={s.id} className="rs-row">
-                    <div className="rs-avatar">{s.clientName.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
+                    <div className="rs-avatar">{s.clientName.split(' ').map(w => w[0]).join('').slice(0, 2)}</div>
                     <div className="rs-info">
                       <span className="rs-name">{s.clientName}</span>
                       <span className="rs-date">{formatDate(s.date)} · {s.sessionType}</span>
@@ -255,8 +255,8 @@ const Dashboard = () => {
             <div className="status-breakdown">
               {[
                 { label: 'Confirmed', count: stats.confirmedAppointments, cls: 'badge-teal' },
-                { label: 'Completed', count: stats.completedSessions,     cls: 'badge-green' },
-                { label: 'Pending',   count: stats.pendingAppointments,   cls: 'badge-orange' },
+                { label: 'Completed', count: stats.completedSessions, cls: 'badge-green' },
+                { label: 'Pending', count: stats.pendingAppointments, cls: 'badge-orange' },
                 { label: 'Cancelled', count: stats.cancelledAppointments, cls: 'badge-red' },
               ].map(s => (
                 <div key={s.label} className="status-row">

@@ -9,7 +9,7 @@ const Settings = () => {
     name: "People's Physio",
     tagline: 'Your Health, Our Priority',
     phone: '+94 77 123 4567',
-    email: 'info@peoplесphysio.lk',
+    email: 'info@peoplesphysio.lk',
     address: 'No. 25, Galle Road, Colombo 06, Sri Lanka',
     regNo: 'PHY/SL/2020/001',
     openTime: '08:00',
@@ -30,7 +30,7 @@ const Settings = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
         {/* Clinic Info */}
         <div className="card">
-          <h3 style={{ color: 'var(--teal-dark)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <h3 style={{ color: 'var(--teal)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}>
             <Building size={16} /> Clinic Information
           </h3>
           <div className="form-group"><label>Clinic Name</label>
@@ -49,7 +49,7 @@ const Settings = () => {
 
         {/* System Settings */}
         <div className="card">
-          <h3 style={{ color: 'var(--teal-dark)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}>
+          <h3 style={{ color: 'var(--teal)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}>
             <User size={16} /> System Settings
           </h3>
           <div className="form-row">
@@ -72,10 +72,10 @@ const Settings = () => {
             </select>
           </div>
 
-          <div style={{ padding: '14px', background: 'var(--teal-light)', borderRadius: 8, marginTop: 8 }}>
-            <div style={{ fontWeight: 700, color: 'var(--teal-dark)', marginBottom: 6 }}>Registered Therapists</div>
+          <div style={{ padding: '14px', background: 'var(--teal-light)', borderRadius: 8, marginTop: 12, border: '1px solid var(--border-color)' }}>
+            <div style={{ fontWeight: 700, color: 'var(--teal)', marginBottom: 6 }}>Registered Therapists</div>
             {THERAPISTS.map(t => (
-              <div key={t} style={{ padding: '6px 0', borderBottom: '1px solid rgba(26,107,114,.1)', fontSize: 13, color: 'var(--teal-dark)' }}>
+              <div key={t} style={{ padding: '6px 0', borderBottom: '1px solid var(--border-color)', fontSize: 13, color: 'var(--text-main)' }}>
                 {t}
               </div>
             ))}
@@ -87,4 +87,3 @@ const Settings = () => {
 };
 
 export default Settings;
-
