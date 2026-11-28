@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { formatDate, formatTime, formatCurrency } from '../../utils/format';
 import { CalendarDays, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
@@ -28,6 +29,7 @@ const Schedule = () => {
   const hours = Array.from({ length: 12 }, (_, i) => i + 8); // 8am–7pm
 
   return (
+    <PageWrapper>
     <div>
       <div className="page-header">
         <div>
@@ -107,6 +109,7 @@ const Schedule = () => {
         </div>
       </div>
     </div>
+    </PageWrapper>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { useTheme } from '../../context/ThemeContext';
 import { formatCurrency } from '../../utils/format';
@@ -40,6 +41,7 @@ const Reports = () => {
   appointments.forEach(a => { byTherapist[a.therapist] = (byTherapist[a.therapist] || 0) + 1; });
 
   return (
+    <PageWrapper>
     <div>
       <div className="page-header">
         <div><h1>Reports & Analytics</h1><p>Clinic performance overview</p></div>
@@ -132,6 +134,7 @@ const Reports = () => {
         </div>
       </div>
     </div>
+    </PageWrapper>
   );
 };
 

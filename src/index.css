@@ -411,3 +411,149 @@ tbody tr:last-child { border-bottom: none; }
   .form-row, .form-row-3 { grid-template-columns: 1fr; }
   .modal { padding: 20px; }
 }
+
+
+/* =====================================================
+   ANIMATION UTILITIES — People's Physio
+   ===================================================== */
+
+/* Core keyframes */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* Utility classes */
+.animate-fadeInUp  { animation: fadeInUp  0.4s ease both; }
+.animate-fadeIn    { animation: fadeIn    0.35s ease both; }
+.animate-scaleIn   { animation: scaleIn   0.35s ease both; }
+.animate-slideRight{ animation: slideInRight 0.4s ease both; }
+
+/* Stagger delays */
+.delay-0  { animation-delay: 0s; }
+.delay-1  { animation-delay: 0.07s; }
+.delay-2  { animation-delay: 0.14s; }
+.delay-3  { animation-delay: 0.21s; }
+.delay-4  { animation-delay: 0.28s; }
+.delay-5  { animation-delay: 0.35s; }
+.delay-6  { animation-delay: 0.42s; }
+
+/* Skeleton shimmer */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--gray-100) 25%,
+    var(--gray-200) 50%,
+    var(--gray-100) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg,
+    #1E293B 25%,
+    #334155 50%,
+    #1E293B 75%
+  );
+  background-size: 800px 100%;
+}
+
+/* Stat cards — stagger entrance */
+.stat-card {
+  opacity: 0;
+  animation: fadeInUp 0.4s ease forwards;
+}
+.stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-card:nth-child(2) { animation-delay: 0.12s; }
+.stat-card:nth-child(3) { animation-delay: 0.19s; }
+.stat-card:nth-child(4) { animation-delay: 0.26s; }
+.stat-card:nth-child(5) { animation-delay: 0.33s; }
+.stat-card:nth-child(6) { animation-delay: 0.40s; }
+
+/* Table row entrance */
+.table-row-animate {
+  opacity: 0;
+  animation: fadeInUp 0.35s ease forwards;
+}
+
+/* Button enhanced hover */
+.btn {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.25s ease !important;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(26,107,114,0.25);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(0px) scale(0.98);
+}
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(26,107,114,0.4);
+}
+.btn-danger:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(239,68,68,0.3);
+}
+
+/* Modal entrance */
+.modal-backdrop {
+  animation: fadeIn 0.25s ease;
+}
+.modal {
+  animation: scaleIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Sidebar nav item hover effect */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+.nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  border-radius: 0 2px 2px 0;
+  transition: height 0.25s ease;
+}
+.nav-link.active::before,
+.nav-link:hover::before {
+  height: 70%;
+}
+
+/* Filter tab animate */
+.filter-tabs .tab {
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Card hover lift */
+.card:hover, .stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+[data-theme="dark"] .card:hover, [data-theme="dark"] .stat-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { formatDate, formatCurrency } from '../../utils/format';
 import { APPOINTMENT_TYPES } from '../../utils/data';
@@ -155,6 +156,7 @@ const Sales = () => {
   const filteredTotal = filtered.reduce((sum, s) => sum + Number(s.amount), 0);
 
   return (
+    <PageWrapper>
     <div>
       <div className="page-header">
         <div>
@@ -316,6 +318,7 @@ const Sales = () => {
         />
       )}
     </div>
+    </PageWrapper>
   );
 };
 

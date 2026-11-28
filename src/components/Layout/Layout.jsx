@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Toast from '../UI/Toast';
@@ -45,7 +46,9 @@ const Layout = () => {
       <div className="layout-main">
         <Header onToggle={handleToggle} />
         <main className="layout-content">
-          <Outlet />
+          <AnimatePresence mode="wait">
+            <Outlet key={location.pathname} />
+          </AnimatePresence>
         </main>
       </div>
       <Toast toasts={toasts} />

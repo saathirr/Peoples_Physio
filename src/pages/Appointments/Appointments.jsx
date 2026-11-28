@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { formatDate, formatTime, formatCurrency } from '../../utils/format';
 import { THERAPISTS, APPOINTMENT_TYPES, APPOINTMENT_STATUS } from '../../utils/data';
@@ -169,6 +170,7 @@ const Appointments = () => {
   }).sort((a, b) => b.date.localeCompare(a.date) || b.time.localeCompare(a.time));
 
   return (
+    <PageWrapper>
     <div>
       <div className="page-header">
         <div>
@@ -303,6 +305,7 @@ const Appointments = () => {
         />
       )}
     </div>
+    </PageWrapper>
   );
 };
 

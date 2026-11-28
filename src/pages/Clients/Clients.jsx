@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { formatDate, formatPhone, calcAge, formatCurrency } from '../../utils/format';
 import { DISTRICTS, GENDERS, CLIENT_STATUS } from '../../utils/data';
@@ -267,6 +268,7 @@ const Clients = () => {
   const statusColor = { Active: 'badge-green', Inactive: 'badge-red' };
 
   return (
+    <PageWrapper>
     <div>
       <div className="page-header">
         <div>
@@ -426,6 +428,7 @@ const Clients = () => {
         />
       )}
     </div>
+    </PageWrapper>
   );
 };
 

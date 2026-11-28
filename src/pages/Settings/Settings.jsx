@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { THERAPISTS } from '../../utils/data';
 import { Save, Building, User, Phone, Mail, MapPin } from 'lucide-react';
@@ -21,6 +22,7 @@ const Settings = () => {
   const save = () => showToast('Settings saved successfully!');
 
   return (
+    <PageWrapper>
     <div>
       <div className="page-header">
         <div><h1>Settings</h1><p>Manage clinic and system settings</p></div>
@@ -83,6 +85,7 @@ const Settings = () => {
         </div>
       </div>
     </div>
+    </PageWrapper>
   );
 };
 

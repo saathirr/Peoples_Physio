@@ -42,10 +42,10 @@ const defaultSales = [
 ];
 
 export const AppProvider = ({ children }) => {
-  const [clients, setClients]           = useState(defaultClients);
+  const [clients, setClients] = useState(defaultClients);
   const [appointments, setAppointments] = useState(defaultAppointments);
-  const [sales, setSales]               = useState(defaultSales);
-  const [toasts, setToasts]             = useState([]);
+  const [sales, setSales] = useState(defaultSales);
+  const [toasts, setToasts] = useState([]);
 
   // ── Toast ─────────────────────────────────────────────────────────────
   const showToast = useCallback((msg, type = 'success') => {
@@ -133,8 +133,8 @@ export const AppProvider = ({ children }) => {
         return d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear();
       }
       if (filter === 'custom' && customStart && customEnd) {
-        const s = new Date(customStart); s.setHours(0,0,0,0);
-        const e = new Date(customEnd);   e.setHours(23,59,59,999);
+        const s = new Date(customStart); s.setHours(0, 0, 0, 0);
+        const e = new Date(customEnd); e.setHours(23, 59, 59, 999);
         return d >= s && d <= e;
       }
       return true; // 'all'
@@ -144,19 +144,19 @@ export const AppProvider = ({ children }) => {
   // ── Computed stats ────────────────────────────────────────────────────
   const todayStr = new Date().toISOString().split('T')[0];
   const stats = {
-    totalClients:          clients.length,
-    activeClients:         clients.filter(c => c.status === 'Active').length,
-    totalAppointments:     appointments.length,
-    todayAppointments:     appointments.filter(a => a.date === todayStr).length,
+    totalClients: clients.length,
+    activeClients: clients.filter(c => c.status === 'Active').length,
+    totalAppointments: appointments.length,
+    todayAppointments: appointments.filter(a => a.date === todayStr).length,
     confirmedAppointments: appointments.filter(a => a.status === 'Confirmed').length,
-    completedSessions:     appointments.filter(a => a.status === 'Completed').length,
-    pendingAppointments:   appointments.filter(a => a.status === 'Pending').length,
+    completedSessions: appointments.filter(a => a.status === 'Completed').length,
+    pendingAppointments: appointments.filter(a => a.status === 'Pending').length,
     cancelledAppointments: appointments.filter(a => a.status === 'Cancelled').length,
-    totalRevenue:          sales.reduce((s, x) => s + Number(x.amount), 0),
-    pendingRevenue:        appointments
+    totalRevenue: sales.reduce((s, x) => s + Number(x.amount), 0),
+    pendingRevenue: appointments
       .filter(a => !a.paid && a.status !== 'Cancelled')
       .reduce((s, a) => s + (a.fee || 0), 0),
-    totalSales:            sales.length,
+    totalSales: sales.length,
   };
 
   return (

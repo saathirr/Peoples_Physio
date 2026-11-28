@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PageWrapper from '../../components/UI/PageWrapper';
 import { useApp } from '../../context/AppContext';
 import { formatCurrency, formatDate, formatTime } from '../../utils/format';
 import {
@@ -62,6 +63,7 @@ const Dashboard = () => {
   };
 
   return (
+    <PageWrapper>
     <div className="dashboard">
       {/* Welcome Banner */}
       <div className="dash-welcome">
@@ -273,6 +275,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </PageWrapper>
   );
 };
 
